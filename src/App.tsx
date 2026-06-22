@@ -4,35 +4,11 @@ import './App.css'
 const PRODUCTS = [
   {
     id: 1,
-    name: 'Magnolia Glow Serum',
-    tagline: 'Brightening · Hydrating',
-    price: '$38',
+    name: 'Chandan No. 5',
+    tagline: 'Healing, anti-inflammatory face wash.',
+    price: '$20',
     gradient: 'linear-gradient(145deg, #EDE0D0 0%, #D4B488 100%)',
     badge: 'Bestseller',
-  },
-  {
-    id: 2,
-    name: 'Sweet Tea Cleanser',
-    tagline: 'Gentle · Daily',
-    price: '$28',
-    gradient: 'linear-gradient(145deg, #D4E4D0 0%, #7A9E7E 100%)',
-    badge: 'New',
-  },
-  {
-    id: 3,
-    name: 'Georgia Clay Mask',
-    tagline: 'Purifying · Detoxifying',
-    price: '$34',
-    gradient: 'linear-gradient(145deg, #E8C4A0 0%, #B85C38 80%)',
-    badge: null,
-  },
-  {
-    id: 4,
-    name: 'Honeysuckle Mist',
-    tagline: 'Toning · Refreshing',
-    price: '$26',
-    gradient: 'linear-gradient(145deg, #F0E8DC 0%, #E0CDB8 100%)',
-    badge: 'Limited',
   },
 ]
 
@@ -94,7 +70,7 @@ export default function App() {
             Rooted South
           </a>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+          <div className="nav-links">
             {[
               { label: 'Shop', href: '#shop' },
               { label: 'Ingredients', href: '#ingredients' },
@@ -124,18 +100,18 @@ export default function App() {
 
       {/* HERO */}
       <section style={{ minHeight: '88vh', display: 'flex', alignItems: 'center', backgroundColor: '#F6EFE2' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '4rem 1.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', width: '100%' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '4rem 1.5rem' }} className="hero-grid">
           {/* Text side */}
-          <div>
+          <div className="hero-text">
             <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase' }}>
-              South Indian Botanical Skincare
+              South Indian Botanical Acne Care
             </span>
             <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2.5rem, 4.25vw, 4.25rem)', fontWeight: 700, lineHeight: 1.04, letterSpacing: '-0.025em', color: '#1E120A', margin: '1rem 0 1.5rem', padding: 0 }}>
               Rooted in<br />South Indian Sandal.<br />
               <em style={{ fontStyle: 'italic', color: '#2D4A3E' }}>Made for Acne.</em>
             </h1>
-            <p style={{ fontSize: '1.0625rem', lineHeight: 1.75, color: '#5C4A3A', maxWidth: '380px', marginBottom: '2.5rem', fontWeight: 300 }}>
-              All-natural skincare with less than 8 ingredients per product - completely free from the harsh chemicals that dominate the acne aisle.
+            <p style={{ fontSize: '1.0625rem', lineHeight: 1.75, color: '#5C4A3A', maxWidth: '380px', margin: '0 0 2.5rem', fontWeight: 300 }}>
+              All-natural skincare with less than 7 ingredients per product - completely free from the harsh chemicals that dominate the acne aisle.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
               <a href="#" style={{ backgroundColor: '#B85C38', color: '#F6EFE2', padding: '0.875rem 2.25rem', borderRadius: '4px', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', letterSpacing: '0.05em', display: 'inline-block' }}>
@@ -148,7 +124,7 @@ export default function App() {
           </div>
 
           {/* Visual side */}
-          <div style={{ position: 'relative', height: '540px' }}>
+          <div className="hero-visual">
             {/* Background blob */}
             <div style={{ position: 'absolute', inset: 0, borderRadius: '60% 40% 55% 45% / 55% 45% 55% 45%', background: 'linear-gradient(145deg, #EDE0D0 0%, #C9A87C 50%, rgba(184,92,56,0.4) 100%)', opacity: 0.45 }} />
             {/* Product card */}
@@ -161,16 +137,13 @@ export default function App() {
                 </div>
               </div>
               <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1E120A', marginBottom: '0.25rem' }}>Magnolia Glow Serum</p>
-                <p style={{ fontSize: '0.8rem', color: '#5C4A3A', fontWeight: 300 }}>Brightening · Hydrating · $38</p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1E120A', marginBottom: '0.25rem' }}>Chandan No. 5</p>
+                <p style={{ fontSize: '0.8rem', color: '#5C4A3A', fontWeight: 300 }}>Healing, anti-inflammatory face wash. $20</p>
               </div>
             </div>
             {/* Floating badges */}
             <div style={{ position: 'absolute', top: '12%', right: '2%', backgroundColor: '#2D4A3E', color: '#F6EFE2', padding: '0.45rem 1rem', borderRadius: '100px', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
               ★ Bestseller
-            </div>
-            <div style={{ position: 'absolute', bottom: '14%', left: '2%', backgroundColor: '#F6EFE2', color: '#2D4A3E', padding: '0.45rem 1rem', borderRadius: '100px', fontSize: '0.72rem', fontWeight: 500, border: '1px solid #E0D4C4', whiteSpace: 'nowrap' }}>
-              Clean · Cruelty-free
             </div>
           </div>
         </div>
@@ -181,12 +154,11 @@ export default function App() {
         <div className="ticker">
           {[...Array(4)].map((_, i) => (
             <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '2rem', paddingRight: '2rem', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(246,239,226,0.85)', whiteSpace: 'nowrap' }}>
-              <span>Free shipping over $50</span><span style={{ opacity: 0.4 }}>✦</span>
-              <span>Sustainably sourced</span><span style={{ opacity: 0.4 }}>✦</span>
-              <span>Cruelty-free</span><span style={{ opacity: 0.4 }}>✦</span>
-              <span>Southern botanicals</span><span style={{ opacity: 0.4 }}>✦</span>
-              <span>Woman-owned</span><span style={{ opacity: 0.4 }}>✦</span>
-              <span>Dermatologist tested</span><span style={{ opacity: 0.4 }}>✦</span>
+              <span>Dermatologist-tested</span><span style={{ opacity: 0.4 }}>✦</span>
+              <span>NO harsh chemicals</span><span style={{ opacity: 0.4 }}>✦</span>
+              <span>Plant-based</span><span style={{ opacity: 0.4 }}>✦</span>
+              <span>7 ingredients. That's it.</span><span style={{ opacity: 0.4 }}>✦</span>
+              <span>For acne, scarring, and discoloration</span><span style={{ opacity: 0.4 }}>✦</span>
             </span>
           ))}
         </div>
@@ -195,19 +167,14 @@ export default function App() {
       {/* PRODUCTS */}
       <section id="shop" style={{ backgroundColor: '#F6EFE2', padding: '6rem 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem' }}>
-            <div>
-              <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Shop</p>
-              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2rem, 3.5vw, 3.25rem)', fontWeight: 700, color: '#1E120A', lineHeight: 1.1, letterSpacing: '-0.025em', margin: 0, padding: 0 }}>
-                Our bestsellers
-              </h2>
-            </div>
-            <a href="#" style={{ fontSize: '0.875rem', fontWeight: 500, color: '#1E120A', textDecoration: 'none', borderBottom: '1px solid #1E120A', paddingBottom: '2px' }}>
-              View all →
-            </a>
+          <div style={{ marginBottom: '3rem' }}>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Shop</p>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2rem, 3.5vw, 3.25rem)', fontWeight: 700, color: '#1E120A', lineHeight: 1.1, letterSpacing: '-0.025em', margin: 0, padding: 0 }}>
+              Our bestsellers
+            </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="products-grid">
             {PRODUCTS.map(product => (
               <div key={product.id} style={{ cursor: 'pointer' }}>
                 <div style={{ borderRadius: '12px', height: '300px', background: product.gradient, position: 'relative', overflow: 'hidden', marginBottom: '1rem', boxShadow: '0 2px 16px rgba(30,18,10,0.08)', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
@@ -236,7 +203,7 @@ export default function App() {
 
       {/* BRAND STORY */}
       <section id="our-story" style={{ backgroundColor: '#2D4A3E', padding: '7rem 0' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }} className="story-grid">
           <div>
             <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#C9A87C', textTransform: 'uppercase', marginBottom: '1rem' }}>Our story</p>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2rem, 3.5vw, 3.25rem)', fontWeight: 700, color: '#F6EFE2', lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: '1.75rem', padding: 0 }}>
@@ -244,10 +211,13 @@ export default function App() {
               <em style={{ fontStyle: 'italic', color: '#C9A87C' }}>Brewed with My Struggle.</em>
             </h2>
             <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '1.25rem' }}>
-              We grew up watching our grandmothers brew teas, press oils, and tend gardens in the Southern sun. Every product we make is an homage to that tradition — slow, deliberate, and grounded in the land.
+              We grew up with cystic acne, spending countless tears and tens of thousands of dollars on products that not only didn't work, but hurt our skin. Out of frustration one day, we decided to throw them all away, and just use a single natural ingredient we had in the back of our closet (Mysore Sandal). To our happy surprise, that sole ingredient completely transformed our skin.
+            </p>
+            <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '1.25rem' }}>
+              Rooted South is a woman-owned, dermatologist-backed brand based in Chicago, IL. We partner with family farms across South India to source Mysore Sandal.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '2.5rem' }}>
-              Rooted South is a woman-owned brand based in Atlanta, Georgia. We partner with small family farms across Alabama, Georgia, and Mississippi to source every botanical ingredient we use.
+              7 ingredients. That's it.
             </p>
             <a href="#" style={{ backgroundColor: '#C9A87C', color: '#1E120A', padding: '0.875rem 2.25rem', borderRadius: '4px', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', letterSpacing: '0.05em', display: 'inline-block' }}>
               Read our story
@@ -278,7 +248,7 @@ export default function App() {
               Key ingredients
             </h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div className="ingredients-grid">
             {INGREDIENTS.map(ing => (
               <div key={ing.name} style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '2.5rem', border: '1px solid #EAE0D4', boxShadow: '0 2px 12px rgba(30,18,10,0.04)' }}>
                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#F6EFE2', border: '1px solid #EAE0D4', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', fontSize: '1rem', color: '#B85C38', fontWeight: 700 }}>
@@ -302,7 +272,7 @@ export default function App() {
               From the community
             </h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div className="testimonials-grid">
             {TESTIMONIALS.map((t, i) => (
               <div key={i} style={{ backgroundColor: '#F6EFE2', borderRadius: '12px', padding: '2rem', border: '1px solid #E4D8CA', boxShadow: '0 2px 8px rgba(30,18,10,0.04)' }}>
                 <div style={{ color: '#B85C38', fontSize: '0.9rem', marginBottom: '1.25rem', letterSpacing: '0.1em' }}>★★★★★</div>
@@ -358,17 +328,17 @@ export default function App() {
       {/* FOOTER */}
       <footer style={{ backgroundColor: '#1E120A', borderTop: '1px solid rgba(246,239,226,0.08)', padding: '3.5rem 0 2rem' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: '2.5rem', marginBottom: '3rem' }}>
+          <div className="footer-grid">
             <div>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', fontWeight: 700, color: '#F6EFE2', marginBottom: '0.75rem' }}>Rooted South</p>
               <p style={{ fontSize: '0.85rem', color: 'rgba(246,239,226,0.45)', fontWeight: 300, lineHeight: 1.75, maxWidth: '220px' }}>
-                Southern botanical skincare, made with intention in Atlanta, Georgia.
+                South Indian botanical skincare, made with intention in Chicago, Illinois.
               </p>
             </div>
             {[
-              { title: 'Shop', links: ['All Products', 'Serums', 'Cleansers', 'Masks', 'Mists', 'Gift Sets'] },
-              { title: 'Company', links: ['Our Story', 'Ingredients', 'Sustainability', 'Journal', 'Press'] },
-              { title: 'Help', links: ['FAQ', 'Shipping & Returns', 'Contact Us', 'Store Locator'] },
+              { title: 'Shop', links: ['All Products', 'Mists'] },
+              { title: 'Company', links: ['Our Story', 'Ingredients', 'Sustainability'] },
+              { title: 'Help', links: ['FAQ', 'Shipping & Returns', 'Contact Us'] },
             ].map(col => (
               <div key={col.title}>
                 <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C9A87C', marginBottom: '1.25rem' }}>{col.title}</p>
@@ -383,8 +353,8 @@ export default function App() {
             ))}
           </div>
           <div style={{ borderTop: '1px solid rgba(246,239,226,0.08)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <p style={{ fontSize: '0.78rem', color: 'rgba(246,239,226,0.35)', fontWeight: 300 }}>© 2025 Rooted South. All rights reserved.</p>
-            <p style={{ fontSize: '0.78rem', color: 'rgba(246,239,226,0.35)', fontWeight: 300 }}>Atlanta, Georgia &nbsp;·&nbsp; Woman-owned &nbsp;·&nbsp; Cruelty-free</p>
+            <p style={{ fontSize: '0.78rem', color: 'rgba(246,239,226,0.35)', fontWeight: 300 }}>© 2026 Rooted South. All rights reserved.</p>
+            <p style={{ fontSize: '0.78rem', color: 'rgba(246,239,226,0.35)', fontWeight: 300 }}>Chicago, IL &nbsp;·&nbsp; Woman-owned &nbsp;·&nbsp; Dermatologist-backed</p>
           </div>
         </div>
       </footer>
