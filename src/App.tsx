@@ -211,7 +211,10 @@ export default function App() {
               <em style={{ fontStyle: 'italic', color: '#C9A87C' }}>Brewed with My Struggle.</em>
             </h2>
             <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '1.25rem' }}>
-              We grew up with cystic acne, spending countless tears and tens of thousands of dollars on products that not only didn't work, but hurt our skin. Out of frustration one day, we decided to throw them all away, and just use a single natural ingredient we had in the back of our closet (Mysore Sandal). To our happy surprise, that sole ingredient completely transformed our skin.
+              After spending countless tears, tens of thousands of dollars, and over a decade on acne care that didn't work AND hurt our skin, we decided to do something about it.
+            </p>
+            <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '1.25rem' }}>
+              Our products soothe acne and it's after-effects with no harsh chemicals - just the power of Mysore Sandal - a rare botanical that kills bacteria, reduces inflammation, and regenerates skin cells naturally without disrupting the moisture barrier.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '1.25rem' }}>
               Rooted South is a woman-owned, dermatologist-backed brand based in Chicago, IL. We partner with family farms across South India to source Mysore Sandal.
@@ -226,9 +229,9 @@ export default function App() {
 
           <div style={{ position: 'relative', height: '500px' }}>
             <div style={{ position: 'absolute', inset: 0, borderRadius: '16px', background: 'linear-gradient(145deg, #3D5E50 0%, #2D4A3E 60%, #1E3228 100%)', border: '1px solid rgba(246,239,226,0.08)' }} />
-            <div style={{ position: 'absolute', inset: '2.5rem', borderRadius: '10px', background: 'rgba(201,168,124,0.08)', border: '1px solid rgba(201,168,124,0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.85rem', fontWeight: 400, color: 'rgba(246,239,226,0.5)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Key botanicals</p>
-              {['Magnolia Bark', 'Sweet Tea Leaf', 'Georgia Red Clay', 'Honeysuckle', 'Peach Kernel Oil'].map(ingredient => (
+            <div style={{ position: 'absolute', inset: '2.5rem', borderRadius: '10px', background: 'rgba(201,168,124,0.08)', border: '1px solid rgba(201,168,124,0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', gap: '1.25rem', paddingTop: '2.5rem', paddingBottom: '2.5rem' }}>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.85rem', fontWeight: 400, color: 'rgba(246,239,226,0.5)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key botanicals</p>
+              {['Mysore Sandalwood Oil', 'Distilled Water', 'Vegetable Glycerin', 'Jojoba Oil', 'Castille Soap', 'Saliguard'].map(ingredient => (
                 <div key={ingredient} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#C9A87C', flexShrink: 0 }} />
                   <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.375rem', color: '#F6EFE2', fontWeight: 400, fontStyle: 'italic' }}>{ingredient}</span>
