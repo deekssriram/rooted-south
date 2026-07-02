@@ -31,8 +31,9 @@ html, body {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
   gap: 1.5rem;
+  justify-content: center;
 }
 
 .story-grid {
@@ -68,6 +69,13 @@ html, body {
 .hero-visual {
   position: relative;
   height: 540px;
+}
+
+.concern-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
 }
 
 @media (max-width: 1024px) {
@@ -111,6 +119,10 @@ html, body {
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .concern-panel {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 

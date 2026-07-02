@@ -12,48 +12,81 @@ const PRODUCTS = [
   },
 ]
 
+const CONCERNS = [
+  {
+    id: 'dark-spots',
+    label: 'Dark Spots',
+    description:
+      'Our Chandan No. 5 face wash is formulated with Mysore Sandalwood Oil, clinically shown to inhibit melanin production and fade hyperpigmentation with regular use. Unlike harsh brightening acids, sandalwood works gently without disrupting your moisture barrier.',
+    benefit:
+      'Mysore Sandalwood Oil works at the cellular level to reduce melanin deposits and restore even skin tone over 4–6 weeks of consistent use.',
+    product: PRODUCTS[0],
+  },
+  {
+    id: 'scarring',
+    label: 'Scarring',
+    description:
+      'Acne scars meet their match in our Chandan No. 5 formula. Sandalwood\'s natural anti-inflammatory compounds calm residual redness, while vegetable glycerin supports skin regeneration — no retinols or peels required.',
+    benefit:
+      'Sandalwood\'s active compounds accelerate skin cell turnover, softening the texture and color of acne scars without sensitizing the skin.',
+    product: PRODUCTS[0],
+  },
+  {
+    id: 'discoloration',
+    label: 'Discoloration',
+    description:
+      'Uneven skin tone is one of the hardest concerns to address. Chandan No. 5 pairs brightening sandalwood with Jojoba Oil to restore clarity and balance your natural complexion — without stripping the skin.',
+    benefit:
+      'Jojoba Oil mimics your skin\'s natural sebum to restore balance, while sandalwood targets the underlying pigment causing discoloration.',
+    product: PRODUCTS[0],
+  },
+]
+
 const TESTIMONIALS = [
   {
-    text: 'My skin has never felt this good. The Magnolia Serum is pure magic — I\'m completely obsessed.',
-    name: 'Savannah M.',
-    location: 'Charleston, SC',
+    text: 'I\'ve struggled with dark spots for years and nothing worked until Chandan No. 5. After six weeks my skin tone is the most even it\'s ever been. I keep telling everyone about it.',
+    name: 'Priya S.',
+    location: 'Chicago, IL',
   },
   {
-    text: 'Finally a brand that understands where I\'m from. The Clay Mask is part of my weekly ritual now.',
-    name: 'Grace T.',
-    location: 'Atlanta, GA',
+    text: 'As someone with sensitive, acne-prone skin I\'m always nervous trying new products. This face wash is so gentle — no irritation, no dryness, just clearer skin. The ingredient list alone sold me.',
+    name: 'Aisha K.',
+    location: 'Houston, TX',
   },
   {
-    text: 'The Sweet Tea Cleanser is so gentle yet effective. My eczema-prone skin absolutely loves it.',
-    name: 'Lily R.',
-    location: 'New Orleans, LA',
+    text: 'I love that it\'s rooted in something real. My grandmother used sandalwood her whole life and seeing it formulated this thoughtfully — for modern acne care — genuinely moved me.',
+    name: 'Meera R.',
+    location: 'San Francisco, CA',
   },
 ]
 
 const INGREDIENTS = [
   {
-    name: 'Magnolia Bark',
-    benefit: 'Anti-inflammatory · Brightening',
+    name: 'Mysore Sandalwood Oil',
+    benefit: 'Anti-inflammatory · Brightening · Antibacterial',
     description:
-      'Sourced from wild-harvested magnolia trees native to the Southeast, rich in honokiol and known for calming redness.',
+      'Sourced from family farms in Mysore, Karnataka, this rare botanical has been used in Ayurvedic skincare for centuries. Clinically shown to inhibit melanin production, calm inflammation, and kill acne-causing bacteria — without disrupting your moisture barrier.',
   },
   {
-    name: 'Sweet Tea Leaf',
-    benefit: 'Antioxidant · Soothing',
+    name: 'Jojoba Oil',
+    benefit: 'Balancing · Moisturizing · Non-comedogenic',
     description:
-      'Georgia-grown green tea leaves packed with EGCG to calm and protect your skin barrier against daily stressors.',
+      'Chemically similar to your skin\'s natural sebum, jojoba oil regulates oil production and deeply moisturizes without clogging pores. It works alongside sandalwood to restore your skin\'s natural balance and support an even complexion.',
   },
   {
-    name: 'Georgia Red Clay',
-    benefit: 'Purifying · Mineralizing',
+    name: 'Vegetable Glycerin',
+    benefit: 'Hydrating · Skin-regenerating · Soothing',
     description:
-      'Mineral-rich clay from the Georgia Piedmont that draws out impurities without stripping the skin of its natural oils.',
+      'A gentle humectant that draws moisture into the skin and supports its natural regeneration process. It calms post-acne redness and creates the smooth, supple base that lets our other botanicals penetrate effectively.',
   },
 ]
 
 export default function App() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [activeConcern, setActiveConcern] = useState<string | null>(null)
+
+  const selectedConcern = CONCERNS.find(c => c.id === activeConcern) ?? null
 
   return (
     <div style={{ backgroundColor: '#F6EFE2', color: '#1E120A', fontFamily: "'DM Sans', system-ui, sans-serif", minHeight: '100vh' }}>
@@ -64,9 +97,9 @@ export default function App() {
       </div>
 
       {/* NAV */}
-      <nav style={{ backgroundColor: '#F6EFE2', borderBottom: '1px solid #E0D4C4', position: 'sticky', top: 0, zIndex: 50 }}>
+      <nav style={{ backgroundColor: 'transparent', borderBottom: '1px solid rgba(246,239,226,0.15)', position: 'absolute', top: '36px', left: 0, right: 0, zIndex: 50 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
-          <a href="/" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: '1.375rem', fontWeight: 700, color: '#1E120A', textDecoration: 'none', letterSpacing: '-0.02em' }}>
+          <a href="/" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: '1.375rem', fontWeight: 700, color: '#F6EFE2', textDecoration: 'none', letterSpacing: '-0.02em' }}>
             Rooted South
           </a>
 
@@ -77,19 +110,19 @@ export default function App() {
               { label: 'Our Story', href: '#our-story' },
               { label: 'Contact', href: '#contact' },
             ].map(link => (
-              <a key={link.label} href={link.href} style={{ fontSize: '0.875rem', fontWeight: 500, color: '#1E120A', textDecoration: 'none', letterSpacing: '0.01em', opacity: 0.85 }}>
+              <a key={link.label} href={link.href} style={{ fontSize: '0.875rem', fontWeight: 500, color: 'rgba(246,239,226,0.88)', textDecoration: 'none', letterSpacing: '0.01em' }}>
                 {link.label}
               </a>
             ))}
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1E120A', padding: '4px', display: 'flex' }}>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#F6EFE2', padding: '4px', display: 'flex' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
             </button>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1E120A', padding: '4px', display: 'flex' }}>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#F6EFE2', padding: '4px', display: 'flex' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
@@ -98,52 +131,50 @@ export default function App() {
         </div>
       </nav>
 
-      {/* HERO */}
-      <section style={{ minHeight: '88vh', display: 'flex', alignItems: 'center', backgroundColor: '#F6EFE2' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '4rem 1.5rem' }} className="hero-grid">
-          {/* Text side */}
-          <div className="hero-text">
-            <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase' }}>
-              South Indian Botanical Acne Care
-            </span>
-            <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2.5rem, 4.25vw, 4.25rem)', fontWeight: 700, lineHeight: 1.04, letterSpacing: '-0.025em', color: '#1E120A', margin: '1rem 0 1.5rem', padding: 0 }}>
-              Rooted in<br />South Indian Sandal.<br />
-              <em style={{ fontStyle: 'italic', color: '#2D4A3E' }}>Made for Acne.</em>
-            </h1>
-            <p style={{ fontSize: '1.0625rem', lineHeight: 1.75, color: '#5C4A3A', maxWidth: '380px', margin: '0 0 2.5rem', fontWeight: 300 }}>
-              All-natural skincare with less than 7 ingredients per product - completely free from the harsh chemicals that dominate the acne aisle.
+      {/* HERO — video background */}
+      <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', backgroundColor: '#1E120A' }}>
+        {/* Background video — replace src with any clear-skin stock video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, filter: 'saturate(0.7) brightness(0.85)' }}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Warm tinted overlay — matches brand palette and improves legibility */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(30,18,10,0.25) 0%, rgba(45,30,18,0.15) 40%, rgba(30,18,10,0.58) 100%)' }} />
+        {/* Warm cream tint layer */}
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(45,20,10,0.12)' }} />
+
+        {/* Hero content — top: eyebrow / middle: headline / bottom: copy + CTAs */}
+        <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', textAlign: 'center', padding: '7rem 1.5rem 5rem' }}>
+
+          {/* TOP: eyebrow */}
+          <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.2em', color: 'rgba(246,239,226,0.72)', textTransform: 'uppercase' }}>
+            South Indian Botanical Acne Care
+          </span>
+
+          {/* MIDDLE: headline */}
+          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2.5rem, 5vw, 5rem)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.025em', color: '#F6EFE2', margin: 0, padding: 0, textShadow: '0 2px 28px rgba(30,18,10,0.6)', maxWidth: '740px' }}>
+            Rooted in South Indian Sandal.<br />
+            <em style={{ fontStyle: 'italic', color: '#C9A87C', fontSize: '0.9em' }}>Made for Dark Spots.</em>
+          </h1>
+
+          {/* BOTTOM: sub-copy + CTAs */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(246,239,226,0.85)', maxWidth: '360px', margin: 0, fontWeight: 300 }}>
+              All-natural skincare. Less than 10 ingredients.<br />None of the harsh chemicals.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-              <a href="#" style={{ backgroundColor: '#B85C38', color: '#F6EFE2', padding: '0.875rem 2.25rem', borderRadius: '4px', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', letterSpacing: '0.05em', display: 'inline-block' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+              <a href="#shop" style={{ backgroundColor: '#B85C38', color: '#F6EFE2', padding: '0.875rem 2.25rem', borderRadius: '4px', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', letterSpacing: '0.05em', display: 'inline-block' }}>
                 Shop now
               </a>
-              <a href="#" style={{ color: '#1E120A', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', borderBottom: '1px solid #1E120A', paddingBottom: '2px', letterSpacing: '0.03em' }}>
+              <a href="#our-story" style={{ color: '#F6EFE2', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', borderBottom: '1px solid rgba(246,239,226,0.5)', paddingBottom: '2px', letterSpacing: '0.03em' }}>
                 Our story →
               </a>
-            </div>
-          </div>
-
-          {/* Visual side */}
-          <div className="hero-visual">
-            {/* Background blob */}
-            <div style={{ position: 'absolute', inset: 0, borderRadius: '60% 40% 55% 45% / 55% 45% 55% 45%', background: 'linear-gradient(145deg, #EDE0D0 0%, #C9A87C 50%, rgba(184,92,56,0.4) 100%)', opacity: 0.45 }} />
-            {/* Product card */}
-            <div style={{ position: 'absolute', inset: '8%', borderRadius: '20px', background: 'linear-gradient(160deg, #F0E4D4 0%, #DBBF96 50%, #C9A87C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', padding: '2rem', boxShadow: '0 32px 64px rgba(30,18,10,0.18)' }}>
-              {/* Bottle mockup */}
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -62%)', width: '72px', height: '148px', borderRadius: '36px 36px 18px 18px', background: 'linear-gradient(180deg, #FAF6EF 0%, #EDE0D0 100%)', boxShadow: '0 16px 36px rgba(30,18,10,0.22), inset 0 1px 2px rgba(255,255,255,0.9)' }}>
-                <div style={{ position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', width: '22px', height: '22px', borderRadius: '50%', background: '#2D4A3E' }} />
-                <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '40px', textAlign: 'center', fontSize: '7px', fontWeight: 600, color: '#5C4A3A', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.4 }}>
-                  Rooted<br />South
-                </div>
-              </div>
-              <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1E120A', marginBottom: '0.25rem' }}>Chandan No. 5</p>
-                <p style={{ fontSize: '0.8rem', color: '#5C4A3A', fontWeight: 300 }}>Healing, anti-inflammatory face wash. $20</p>
-              </div>
-            </div>
-            {/* Floating badges */}
-            <div style={{ position: 'absolute', top: '12%', right: '2%', backgroundColor: '#2D4A3E', color: '#F6EFE2', padding: '0.45rem 1rem', borderRadius: '100px', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
-              ★ Bestseller
             </div>
           </div>
         </div>
@@ -157,26 +188,107 @@ export default function App() {
               <span>Dermatologist-tested</span><span style={{ opacity: 0.4 }}>✦</span>
               <span>NO harsh chemicals</span><span style={{ opacity: 0.4 }}>✦</span>
               <span>Plant-based</span><span style={{ opacity: 0.4 }}>✦</span>
-              <span>7 ingredients. That's it.</span><span style={{ opacity: 0.4 }}>✦</span>
+              <span>10 ingredients. That's it.</span><span style={{ opacity: 0.4 }}>✦</span>
               <span>For acne, scarring, and discoloration</span><span style={{ opacity: 0.4 }}>✦</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* PRODUCTS */}
-      <section id="shop" style={{ backgroundColor: '#F6EFE2', padding: '6rem 0' }}>
+      {/* COMMON CONCERNS */}
+      <section style={{ backgroundColor: '#F6EFE2', padding: '6rem 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ marginBottom: '3rem' }}>
-            <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Shop</p>
+          <div style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Common Concerns</p>
             <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2rem, 3.5vw, 3.25rem)', fontWeight: 700, color: '#1E120A', lineHeight: 1.1, letterSpacing: '-0.025em', margin: 0, padding: 0 }}>
-              Our bestsellers
+              What are you dealing with?
             </h2>
           </div>
 
-          <div className="products-grid">
+          {/* Concern chips */}
+          <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '3rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {CONCERNS.map(concern => (
+              <button
+                key={concern.id}
+                onClick={() => setActiveConcern(activeConcern === concern.id ? null : concern.id)}
+                style={{
+                  padding: '0.7rem 1.75rem',
+                  borderRadius: '4px',
+                  border: activeConcern === concern.id ? '1px solid #1E120A' : '1px solid #C9B9A8',
+                  backgroundColor: activeConcern === concern.id ? '#1E120A' : 'transparent',
+                  color: activeConcern === concern.id ? '#F6EFE2' : '#1E120A',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.04em',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  fontFamily: "'DM Sans', sans-serif",
+                }}
+              >
+                {concern.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Active concern panel */}
+          {selectedConcern && (
+            <div className="concern-panel" style={{ paddingTop: '2.5rem', borderTop: '1px solid #E4D8CA' }}>
+              <div>
+                <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase', marginBottom: '1rem' }}>How we help</p>
+                <p style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: '#5C4A3A', fontWeight: 300, marginBottom: '1.75rem' }}>
+                  {selectedConcern.description}
+                </p>
+                <div style={{ backgroundColor: '#fff', borderRadius: '8px', padding: '1.25rem 1.5rem', border: '1px solid #EAE0D4', boxShadow: '0 2px 8px rgba(30,18,10,0.04)' }}>
+                  <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8A7060', marginBottom: '0.5rem' }}>Key mechanism</p>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.75, color: '#5C4A3A', fontWeight: 400 }}>{selectedConcern.benefit}</p>
+                </div>
+              </div>
+
+              <div style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '2rem', border: '1px solid #EAE0D4', boxShadow: '0 2px 12px rgba(30,18,10,0.06)', alignSelf: 'start' }}>
+                <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.14em', color: '#8A7060', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
+                  Recommended for {selectedConcern.label.toLowerCase()}
+                </p>
+                <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <div style={{ width: '80px', height: '80px', borderRadius: '8px', background: selectedConcern.product.gradient, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: '22px', height: '44px', borderRadius: '11px 11px 6px 6px', background: 'rgba(246,239,226,0.85)', boxShadow: '0 4px 8px rgba(30,18,10,0.15)' }} />
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1E120A', marginBottom: '0.25rem' }}>
+                      {selectedConcern.product.name}
+                    </p>
+                    <p style={{ fontSize: '0.8rem', color: '#8A7060', fontWeight: 300, marginBottom: '0.5rem' }}>
+                      {selectedConcern.product.tagline}
+                    </p>
+                    <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#1E120A' }}>{selectedConcern.product.price}</span>
+                    {selectedConcern.product.badge && (
+                      <span style={{ marginLeft: '0.75rem', fontSize: '0.68rem', fontWeight: 600, color: '#2D4A3E', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                        ✦ {selectedConcern.product.badge}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <a href="#shop" style={{ display: 'block', backgroundColor: '#B85C38', color: '#F6EFE2', padding: '0.8rem 1.5rem', borderRadius: '4px', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', textAlign: 'center', letterSpacing: '0.04em' }}>
+                  Shop now
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* PRODUCTS */}
+      <section id="shop" style={{ backgroundColor: '#EDE4D8', padding: '6rem 0' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
+          <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.18em', color: '#B85C38', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Shop</p>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(2rem, 3.5vw, 3.25rem)', fontWeight: 700, color: '#1E120A', lineHeight: 1.1, letterSpacing: '-0.025em', margin: 0, padding: 0 }}>
+              Our product
+            </h2>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             {PRODUCTS.map(product => (
-              <div key={product.id} style={{ cursor: 'pointer' }}>
+              <div key={product.id} style={{ cursor: 'pointer', textAlign: 'center', width: '300px' }}>
                 <div style={{ borderRadius: '12px', height: '300px', background: product.gradient, position: 'relative', overflow: 'hidden', marginBottom: '1rem', boxShadow: '0 2px 16px rgba(30,18,10,0.08)', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 12px 32px rgba(30,18,10,0.14)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 16px rgba(30,18,10,0.08)' }}>
@@ -189,7 +301,7 @@ export default function App() {
                 </div>
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1rem', fontWeight: 600, color: '#1E120A', marginBottom: '0.3rem', padding: 0 }}>{product.name}</h3>
                 <p style={{ fontSize: '0.78rem', color: '#8A7060', marginBottom: '0.75rem', fontWeight: 300 }}>{product.tagline}</p>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
                   <span style={{ fontWeight: 600, fontSize: '0.95rem', color: '#1E120A' }}>{product.price}</span>
                   <button style={{ fontSize: '0.72rem', fontWeight: 500, color: '#B85C38', background: 'none', border: '1px solid #B85C38', padding: '0.35rem 0.85rem', borderRadius: '4px', cursor: 'pointer', letterSpacing: '0.04em' }}>
                     Add to bag
@@ -220,7 +332,7 @@ export default function App() {
               Rooted South is a woman-owned, dermatologist-backed brand based in Chicago, IL. We partner with family farms across South India to source Mysore Sandal.
             </p>
             <p style={{ fontSize: '1rem', lineHeight: 1.8, color: 'rgba(246,239,226,0.72)', fontWeight: 300, marginBottom: '2.5rem' }}>
-              7 ingredients. That's it.
+              10 ingredients. That's it.
             </p>
             <a href="#" style={{ backgroundColor: '#C9A87C', color: '#1E120A', padding: '0.875rem 2.25rem', borderRadius: '4px', fontWeight: 500, fontSize: '0.875rem', textDecoration: 'none', letterSpacing: '0.05em', display: 'inline-block' }}>
               Read our story
